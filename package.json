@@ -19,7 +19,7 @@
     "build": "yarn tslint && yarn build-ts && yarn test",
     "pretest": "cross-env NODE_ENV=test yarn migrate:reset",
     "migrate:reset": "yarn migrate:undo && yarn migrate",
-    "test": "jest --forceExit --coverage --verbose --detectOpenHandles --testTimeout=10000",
+    "test": "jest",
     "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,green.bold\" \"yarn watch-ts\" \"yarn  watch-node\""
   },
   "devDependencies": {
@@ -28,6 +28,7 @@
     "@types/sequelize": "^4.28.9",
     "@typescript-eslint/eslint-plugin": "^4.17.0",
     "@typescript-eslint/parser": "^4.17.0",
+    "cross-env": "^7.0.3",
     "eslint": "^7.22.0",
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-import": "^2.22.1",
@@ -53,6 +54,8 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "joi": "^17.4.0",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
     "sequelize": "^6.5.0"
   }
 }
