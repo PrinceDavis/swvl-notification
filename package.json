@@ -15,11 +15,11 @@
     "watch-node": "nodemon dist/src/app.js",
     "watch-test": "yarn test -- --watchAll ",
     "seed:undo": "sequelize-cli db:seed:undo:all",
+    "migrate:reset": "yarn migrate:undo && yarn migrate",
     "migrate:undo": "sequelize-cli db:migrate:undo:all",
     "build": "yarn tslint && yarn build-ts && yarn test",
     "pretest": "cross-env NODE_ENV=test yarn migrate:reset",
-    "migrate:reset": "yarn migrate:undo && yarn migrate",
-    "test": "jest",
+    "test": "jest --forceExit --coverage --verbose --detectOpenHandles --testTimeout=10000",
     "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,green.bold\" \"yarn watch-ts\" \"yarn  watch-node\""
   },
   "devDependencies": {

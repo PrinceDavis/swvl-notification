@@ -4,7 +4,7 @@ import { database } from "../database";
 /**
  * Handles manipulation of data in users database table
  */
-export class User extends Model {
+export class UserModel extends Model {
   messagePreference!: "sms" | "push"; // store how users should be reached
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -13,7 +13,7 @@ export class User extends Model {
   phone!: string;
   id!: string;
 }
-User.init(
+UserModel.init(
   {
     id: {
       validate: { isUUID: 4 },

@@ -1,11 +1,11 @@
 import { Model, DataTypes, UUIDV4 } from "sequelize";
 
 import { database } from "../database";
-import { User } from "./user";
+import { UserModel } from "./user";
 /**
  * Handles manipulation of data in notifications database table
  */
-class Notification extends Model {
+export class NotificationModel extends Model {
   status!: "scheduled" | "processing" | "done";
   recipientType!: "driver" | "passenger";
   public readonly createdAt!: Date;
@@ -14,10 +14,10 @@ class Notification extends Model {
   lastRecipientId!: string;
   recipientId!: string;
   message!: string;
-  recipient!: User;
+  recipient!: UserModel;
   id!: string;
 }
-Notification.init(
+NotificationModel.init(
   {
     id: {
       validate: { isUUID: 4 },
@@ -26,7 +26,7 @@ Notification.init(
       primaryKey: true,
     },
     recipientId: {
-      references: { model: User, key: "id" },
+      references: { model: UserModel, key: "id" },
       type: DataTypes.UUID,
       onDelete: "NO ACTION",
       onUpdate: "CASCADE",
@@ -60,5 +60,16 @@ Notification.init(
   {
     sequelize: database,
     tableName: "notifications",
+    indexes: [
+      {
+        fields: ["id"],
+        name: "notification_id_index",
+        unique: true,
+      },
+    ],
   }
 );
+
+NotificationModel.belongsTo(UserModel, {
+  as: "recipient",
+});
