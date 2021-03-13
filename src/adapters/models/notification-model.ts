@@ -1,7 +1,7 @@
 import { Model, DataTypes, UUIDV4 } from "sequelize";
 
 import { database } from "../database";
-import { UserModel } from "./user";
+import { UserModel } from "./user-model";
 /**
  * Handles manipulation of data in notifications database table
  */
@@ -27,7 +27,7 @@ NotificationModel.init(
     },
     recipientId: {
       references: { model: UserModel, key: "id" },
-      type: DataTypes.UUID,
+      type: DataTypes.INTEGER,
       onDelete: "NO ACTION",
       onUpdate: "CASCADE",
     },

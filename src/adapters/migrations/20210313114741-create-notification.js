@@ -9,12 +9,12 @@ module.exports = {
       },
       recipientId: {
         references: { model: "users", key: "id" },
-        type: Sequelize.DataTypes.UUID,
+        type: Sequelize.DataTypes.INTEGER,
         onDelete: "NO ACTION",
         onUpdate: "CASCADE",
       },
       lastRecipientId: {
-        type: Sequelize.DataTypes.UUID,
+        type: Sequelize.DataTypes.INTEGER,
       },
       recipientType: {
         type: Sequelize.DataTypes.ENUM({

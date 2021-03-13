@@ -1,4 +1,4 @@
-import { Model, DataTypes, UUIDV4 } from "sequelize";
+import { Model, DataTypes } from "sequelize";
 
 import { database } from "../database";
 /**
@@ -16,9 +16,9 @@ export class UserModel extends Model {
 UserModel.init(
   {
     id: {
-      validate: { isUUID: 4 },
-      type: DataTypes.UUID,
-      defaultValue: UUIDV4,
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      allowNull: false,
       primaryKey: true,
     },
     messagePreference: {
@@ -51,6 +51,11 @@ UserModel.init(
       {
         fields: ["id"],
         name: "user_id_index",
+        unique: true,
+      },
+      {
+        fields: ["deviceId"],
+        name: "user_device_id_index",
         unique: true,
       },
       {
