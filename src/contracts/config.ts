@@ -7,10 +7,12 @@ export interface ServerI {
 
 export interface DBI {
   dialect: "mysql" | "postgres" | "sqlite";
+  test_db_password: string;
+  test_db_name: string;
+  test_db_user: string;
   username: string;
   password: string;
   database: string;
-  test_db: string;
   host: string;
 }
 

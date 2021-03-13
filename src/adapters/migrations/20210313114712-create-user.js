@@ -9,21 +9,25 @@ module.exports = {
       },
       deviceId: {
         type: Sequelize.DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+      },
+      phone: {
+        type: Sequelize.DataTypes.STRING(20),
+        allowNull: false,
+        unique: true,
       },
       userType: {
         type: Sequelize.DataTypes.ENUM({
-          values: ["driver", "rider"],
+          values: ["driver", "passenger"],
         }),
+        allowNull: false,
       },
-      email: {
-        type: Sequelize.DataTypes.STRING,
-        unique: true,
-      },
-      prefferEmail: {
-        type: Sequelize.DataTypes.BOOLEAN,
-      },
-      prefferPush: {
-        type: Sequelize.DataTypes.BOOLEAN,
+      messagePreference: {
+        type: Sequelize.DataTypes.ENUM({
+          values: ["sms", "push"],
+        }),
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,

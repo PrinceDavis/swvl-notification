@@ -7,25 +7,28 @@ module.exports = {
         type: Sequelize.DataTypes.UUID,
         primaryKey: true,
       },
-      userId: {
+      recipientId: {
+        references: { model: "users", key: "id" },
         type: Sequelize.DataTypes.UUID,
+        onDelete: "NO ACTION",
+        onUpdate: "CASCADE",
       },
       lastRecipientId: {
         type: Sequelize.DataTypes.UUID,
       },
-      userType: {
+      recipientType: {
         type: Sequelize.DataTypes.ENUM({
-          values: ["driver", "rider"],
+          values: ["driver", "passenger"],
         }),
+        allowNull: false,
       },
       message: {
         type: Sequelize.DataTypes.TEXT,
         allowNull: false,
       },
-      type: {
-        type: Sequelize.DataTypes.ENUM({
-          values: ["bulk", "single"],
-        }),
+      multipleRecipient: {
+        type: Sequelize.DataTypes.BOOLEAN,
+        defaultValue: false,
         allowNull: false,
       },
       status: {
