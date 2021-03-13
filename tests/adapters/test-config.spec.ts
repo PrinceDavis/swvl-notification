@@ -1,4 +1,4 @@
-import {config} from "../../src/adapters/config";
+import { config } from "../../src/adapters/config";
 
 describe("config", () => {
   test("has db object", () => {

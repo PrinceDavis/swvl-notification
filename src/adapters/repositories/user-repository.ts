@@ -2,20 +2,26 @@ import { UserObjectI } from "../../contracts/user";
 import { UserModel } from "../models/user-model";
 import { Op } from "sequelize";
 
-export interface UserRepositoryI {
-  findFrom(
-    lastRecipientId: number,
-    userType: string,
-    limit: number
-  ): Promise<UserModel[]>;
-  findByDeviceId(deviceId: string): Promise<UserModel>;
-  add(userObj: UserObjectI): Promise<UserModel>;
+interface FindFromI {
+  lastRecipientId: number;
+  userType: string;
+  limit?: number;
 }
 
-export interface UserModelI {
+interface UserModelI {
   create(user: UserObjectI): Promise<UserModel>;
   findAll(options: unknown): Promise<UserModel[]>;
   findOne(arg: unknown): Promise<UserModel>;
+}
+
+export interface UserRepositoryI {
+  findFrom({
+    lastRecipientId,
+    userType,
+    limit,
+  }: FindFromI): Promise<UserModel[]>;
+  findByDeviceId(deviceId: string): Promise<UserModel>;
+  add(userObj: UserObjectI): Promise<UserModel>;
 }
 
 export class UserRepository implements UserRepositoryI {
@@ -37,11 +43,12 @@ export class UserRepository implements UserRepositoryI {
       throw ex;
     }
   }
-  async findFrom(
-    lastRecipientId: number,
-    userType: string,
-    limit = 10
-  ): Promise<UserModel[]> {
+  async findFrom({
+    lastRecipientId,
+    userType,
+    limit,
+  }: FindFromI): Promise<UserModel[]> {
+    limit = limit || 10;
     return this.model.findAll({
       limit,
       where: {

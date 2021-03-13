@@ -32,7 +32,7 @@ NotificationModel.init(
       onUpdate: "CASCADE",
     },
     lastRecipientId: {
-      type: DataTypes.UUID,
+      type: DataTypes.INTEGER,
     },
     recipientType: {
       type: DataTypes.ENUM({
