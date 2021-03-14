@@ -2,6 +2,7 @@ import { createContainer, asValue, asClass } from "awilix";
 
 import { NotificationModel, UserModel } from "../../adapters/models";
 import { ScheduleNotification } from "../../usescases";
+import { Heimdall, Messenger } from "../../services";
 import { database } from "../../adapters/database";
 import { config } from "../../adapters/config";
 import {
@@ -17,6 +18,8 @@ diContainer.register({
   scheduleNotification: asClass(ScheduleNotification).singleton(),
   userRepository: asClass(UserRepository).singleton(),
   notificationModel: asValue(NotificationModel),
+  messenger: asClass(Messenger).singleton(),
+  heimdall: asClass(Heimdall).singleton(),
   server: asClass(Server).singleton(),
   userModel: asValue(UserModel),
   database: asValue(database),

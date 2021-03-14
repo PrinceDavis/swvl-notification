@@ -22,8 +22,13 @@ describe("UserRepository", () => {
     expect(users[0]).toBeInstanceOf(UserModel);
   });
 
-  test("findFrom: returns an array of User entity", async () => {
-    const user = await userRepository.findByDeviceId("jdjdh");
+  test("findByUserType: returns an array of User entity", async () => {
+    const users = await userRepository.findByUserType("passenger");
+    expect(users[0]).toBeInstanceOf(UserModel);
+  });
+
+  test("findByDeviceId: returns an array of User entity", async () => {
+    const user = await userRepository.findByDeviceId("ddd");
     expect(user).toBeInstanceOf(UserModel);
   });
 });

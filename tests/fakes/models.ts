@@ -2,13 +2,16 @@ import { NotificationModel, UserModel } from "../../src/adapters/models";
 import { NotificationObjI } from "../../src/contracts/notification";
 
 export const fakeUserModel = {
-  findOrCreate: async (option: unknown): Promise<UserModel> => {
-    return UserModel.build({
-      deviceId: "hdaheahfani1233",
-      messagePreference: "sms",
-      userType: "passenger",
-      phone: "977437839373",
-    });
+  findOrCreate: async (option: unknown): Promise<[UserModel, boolean]> => {
+    return [
+      UserModel.build({
+        deviceId: "hdaheahfani1233",
+        messagePreference: "sms",
+        userType: "passenger",
+        phone: "977437839373",
+      }),
+      true,
+    ];
   },
   findAll: async (options: unknown): Promise<UserModel[]> => {
     return Promise.resolve([

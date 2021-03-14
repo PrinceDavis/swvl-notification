@@ -1,15 +1,10 @@
-import { NotificationObjI } from "../contracts/notification";
+import { ArgI, NotificationObjI } from "../contracts/notification";
 import { UserObjectI } from "../contracts/user";
 import { UseCase } from "./usecase";
 import {
   NotificationRepositoryI,
   UserRepositoryI,
 } from "../adapters/repositories";
-
-interface ArgI {
-  notificationRepository: NotificationRepositoryI;
-  userRepository: UserRepositoryI;
-}
 
 interface ExecuteArgI {
   notificationObj: NotificationObjI;

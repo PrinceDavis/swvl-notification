@@ -6,20 +6,24 @@ import cors from "fastify-cors";
 import { ConfigI } from "../../contracts/config";
 import { diContainer } from "./di-container";
 import { registerRoutes } from "./routes";
+import { Heimdall } from "../../services";
 
 interface ServerI {
   database: Sequelize;
+  heimdall: Heimdall;
   config: ConfigI;
 }
 
 export class Server {
   fastify: FastifyInstance;
   database: Sequelize;
+  heimdall: Heimdall;
   config: ConfigI;
 
-  constructor({ config, database }: ServerI) {
+  constructor({ config, database, heimdall }: ServerI) {
     this.fastify = fastify({});
     this.database = database;
+    this.heimdall = heimdall;
     this.config = config;
   }
 
@@ -35,6 +39,7 @@ export class Server {
       this.config.server.port,
       "0.0.0.0"
     );
+    this.heimdall.watch();
     console.log(`server listening on ${address}`);
   }
 

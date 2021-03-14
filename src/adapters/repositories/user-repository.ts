@@ -9,7 +9,7 @@ interface FindFromI {
 }
 
 interface UserModelI {
-  findOrCreate(option: unknown): Promise<[UserModel, string]>;
+  findOrCreate(option: unknown): Promise<[UserModel, boolean]>;
   findAll(options: unknown): Promise<UserModel[]>;
   findOne(arg: unknown): Promise<UserModel>;
 }
@@ -20,6 +20,7 @@ export interface UserRepositoryI {
     userType,
     limit,
   }: FindFromI): Promise<UserModel[]>;
+  findByUserType(userType: string): Promise<UserModel[]>;
   findByDeviceId(deviceId: string): Promise<UserModel>;
   add(userObj: UserObjectI): Promise<UserModel>;
 }
@@ -60,6 +61,10 @@ export class UserRepository implements UserRepositoryI {
       },
     });
   }
+  async findByUserType(userType: string): Promise<UserModel[]> {
+    return this.model.findAll({ limit: 10, where: { userType } });
+  }
+
   async findByDeviceId(deviceId: string): Promise<UserModel> {
     return this.model.findOne({ where: { deviceId } });
   }

@@ -9,8 +9,8 @@ interface ModelI {
 }
 
 export interface NotificationRepositoryI {
+  update(id: string, update: any): Promise<void>;
   add(notificationObj: NotificationObjI): Promise<NotificationModel>;
-  updateLastRecipient(id: string, recipientId: number): Promise<void>;
   fetchUnfinished(): Promise<NotificationModel>;
   next(): Promise<NotificationModel>;
 }
@@ -36,11 +36,11 @@ export class NotificationRepository implements NotificationRepositoryI {
     }
   }
 
-  async updateLastRecipient(id: string, recipientId: number): Promise<void> {
+  async update(id: string, update: any): Promise<void> {
     try {
       await this.model.update(
         {
-          lastRecipientId: recipientId,
+          ...update,
         },
         {
           where: { id },
@@ -60,7 +60,7 @@ export class NotificationRepository implements NotificationRepositoryI {
     return this.model.findOne({
       where: {
         status: "processing",
-        lastRecipientId: { [Op.ne]: null },
+        recipientId: { [Op.eq]: null },
       },
     });
   }
@@ -70,6 +70,7 @@ export class NotificationRepository implements NotificationRepositoryI {
       where: {
         status: "scheduled",
       },
+      include: ["recipient"],
     });
   }
 }
