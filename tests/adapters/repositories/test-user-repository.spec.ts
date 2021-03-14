@@ -1,15 +1,9 @@
+import { UserRepository } from "../../../src/adapters/repositories";
 import { UserModel } from "../../../src/adapters/models";
 import { fakeUserModel } from "../../fakes/models";
-import {
-  UserRepositoryI,
-  UserRepository,
-} from "../../../src/adapters/repositories";
 
 describe("UserRepository", () => {
-  let userRepository: UserRepositoryI;
-  beforeAll(() => {
-    userRepository = new UserRepository({ userModel: fakeUserModel });
-  });
+  const userRepository = new UserRepository({ userModel: fakeUserModel });
 
   test("add: returns a User entity", async () => {
     const user = await userRepository.add({

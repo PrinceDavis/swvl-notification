@@ -23,16 +23,16 @@ describe("User model", () => {
       where: { id: notification.id },
       include: ["recipient"],
     });
-    expect(result.recipient.messagePreference).toEqual(user.messagePreference);
-    expect(result.lastRecipientId).toEqual(notification.lastRecipientId);
-    expect(result.recipientType).toEqual(notification.recipientType);
-    expect(result.recipientId).toEqual(notification.recipientId);
-    expect(result.recipient.deviceId).toEqual(user.deviceId);
-    expect(result.recipient.userType).toEqual(user.userType);
-    expect(result.message).toEqual(notification.message);
-    expect(result.recipient.phone).toEqual(user.phone);
-    expect(result.multipleRecipient).toBe(false);
-    expect(result.status).toBe("scheduled");
+    expect(result?.recipient.messagePreference).toEqual(user.messagePreference);
+    expect(result?.lastRecipientId).toEqual(notification.lastRecipientId);
+    expect(result?.recipientType).toEqual(notification.recipientType);
+    expect(result?.recipientId).toEqual(notification.recipientId);
+    expect(result?.recipient.deviceId).toEqual(user.deviceId);
+    expect(result?.recipient.userType).toEqual(user.userType);
+    expect(result?.message).toEqual(notification.message);
+    expect(result?.recipient.phone).toEqual(user.phone);
+    expect(result?.multipleRecipient).toBe(false);
+    expect(result?.status).toBe("scheduled");
     done();
   });
 });
