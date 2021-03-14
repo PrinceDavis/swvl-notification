@@ -20,15 +20,9 @@ module.exports = {
         type: Sequelize.DataTypes.ENUM({
           values: ["driver", "passenger"],
         }),
-        allowNull: false,
       },
       message: {
         type: Sequelize.DataTypes.TEXT,
-        allowNull: false,
-      },
-      multipleRecipient: {
-        type: Sequelize.DataTypes.BOOLEAN,
-        defaultValue: false,
         allowNull: false,
       },
       status: {

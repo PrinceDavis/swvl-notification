@@ -1,6 +1,5 @@
 export interface NotificationObjI {
-  recipientType: "driver" | "passenger";
-  multipleRecipient: boolean;
-  recipientId: string;
+  recipientType?: "driver" | "passenger";
+  recipientId?: string;
   message: string;
 }

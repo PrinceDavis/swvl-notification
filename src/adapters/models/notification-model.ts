@@ -10,7 +10,6 @@ export class NotificationModel extends Model {
   recipientType!: "driver" | "passenger";
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
-  multipleRecipient!: boolean;
   lastRecipientId!: string;
   recipientId!: string;
   message!: string;
@@ -38,16 +37,10 @@ NotificationModel.init(
       type: DataTypes.ENUM({
         values: ["driver", "passenger"],
       }),
-      allowNull: false,
     },
     message: {
       type: DataTypes.TEXT,
       allowNull: false,
-    },
-    multipleRecipient: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: false,
     },
     status: {
       type: DataTypes.ENUM({

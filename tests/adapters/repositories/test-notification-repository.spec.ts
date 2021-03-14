@@ -17,7 +17,6 @@ describe("NotificationRepository", () => {
     const notification = await repository.add({
       message: "$199 promo code is yours!",
       recipientType: "passenger",
-      multipleRecipient: true,
       recipientId: user.id,
     });
     expect(notification).toBeInstanceOf(NotificationModel);
