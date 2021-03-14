@@ -31,7 +31,6 @@ describe("User model", () => {
     expect(result?.recipient.userType).toEqual(user.userType);
     expect(result?.message).toEqual(notification.message);
     expect(result?.recipient.phone).toEqual(user.phone);
-    expect(result?.multipleRecipient).toBe(false);
     expect(result?.status).toBe("scheduled");
     done();
   });
