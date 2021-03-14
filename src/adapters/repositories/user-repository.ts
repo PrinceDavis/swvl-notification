@@ -9,7 +9,7 @@ interface FindFromI {
 }
 
 interface UserModelI {
-  create(user: UserObjectI): Promise<UserModel>;
+  findOrCreate(option: unknown): Promise<[UserModel, string]>;
   findAll(options: unknown): Promise<UserModel[]>;
   findOne(arg: unknown): Promise<UserModel>;
 }
@@ -32,7 +32,10 @@ export class UserRepository implements UserRepositoryI {
 
   async add(userObj: UserObjectI): Promise<UserModel> {
     try {
-      const user = await this.model.create(userObj);
+      const [user] = await this.model.findOrCreate({
+        where: { deviceId: userObj.deviceId },
+        defaults: userObj,
+      });
       return user;
     } catch (ex) {
       ex.type = "DatabaseError";

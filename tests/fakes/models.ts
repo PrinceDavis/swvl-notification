@@ -1,10 +1,14 @@
 import { NotificationModel, UserModel } from "../../src/adapters/models";
 import { NotificationObjI } from "../../src/contracts/notification";
-import { UserObjectI } from "../../src/contracts/user";
 
 export const fakeUserModel = {
-  create: async (user: UserObjectI): Promise<UserModel> => {
-    return UserModel.build(user);
+  findOrCreate: async (option: unknown): Promise<UserModel> => {
+    return UserModel.build({
+      deviceId: "hdaheahfani1233",
+      messagePreference: "sms",
+      userType: "passenger",
+      phone: "977437839373",
+    });
   },
   findAll: async (options: unknown): Promise<UserModel[]> => {
     return Promise.resolve([

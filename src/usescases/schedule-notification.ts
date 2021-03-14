@@ -26,13 +26,16 @@ export class ScheduleNotification extends UseCase {
   }
 
   async execute({ userObj, notificationObj }: ExecuteArgI): Promise<void> {
-    const { SUCCESS, ERROR, DATABASE_ERROR } = this.events;
+    const { SUCCESS, ERROR, DATABASE_ERROR, BAD_PARAMETERS } = this.events;
     try {
       let user;
       if (userObj) {
         user = await this.userRepository.add(userObj);
       }
-      notificationObj.recipientId = user?.id || notificationObj.recipientId;
+      if (!user && !notificationObj.recipientType) {
+        throw Error("BadParameter");
+      }
+      notificationObj.recipientId = user?.id;
       const notification = await this.notificationRepository.add(
         notificationObj
       );
@@ -40,11 +43,22 @@ export class ScheduleNotification extends UseCase {
     } catch (ex) {
       if (ex.type === "DatabaseError") {
         this.emit(DATABASE_ERROR, ex);
+      } else if (ex.message === "BadParameter") {
+        this.emit(BAD_PARAMETERS, {
+          error: "BadParameter",
+          message: "RecipientType is required when userObj is not provided",
+        });
       } else {
+        console.log(ex);
         this.emit(ERROR, ex);
       }
     }
   }
 }
 
-ScheduleNotification.setEvents(["SUCCESS", "ERROR", "DATABASE_ERROR"]);
+ScheduleNotification.setEvents([
+  "DATABASE_ERROR",
+  "BAD_PARAMETERS",
+  "SUCCESS",
+  "ERROR",
+]);
