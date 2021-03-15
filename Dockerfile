@@ -8,5 +8,5 @@ RUN yarn install
 
 COPY . .
 
-EXPOSE 8080
-CMD ["yarn", "start"]
+EXPOSE 5000
+CMD ["/bin/sh", "entrypoint.sh"]

@@ -1,5 +1,4 @@
 export interface ServerI {
-  jwt_secret: string;
   port: number;
   type: string;
   env: string;
