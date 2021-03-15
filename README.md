@@ -7,7 +7,7 @@ Below are architectural the app.
 This is a variation of clean code/hexagonal architecture.
 There are two ways to schedule notification:
 - Http: By making http request to endpoints (see api documentation)
-- Publishing events: ssh into the app container `docker exec -it <containerId> /bin/bash and run `yarn publish-event`
+- Publishing events: ssh into the app container `docker exec -it <containerId> /bin/bash` and run `yarn publish-event`
 
 ---
 
