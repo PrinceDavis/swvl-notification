@@ -14,6 +14,7 @@
     "migrate": "sequelize-cli db:migrate",
     "watch-node": "nodemon dist/src/app.js",
     "watch-test": "yarn test -- --watchAll ",
+    "publish-event": "node dist/src/worker.js",
     "seed:undo": "sequelize-cli db:seed:undo:all",
     "migrate:reset": "yarn migrate:undo && yarn migrate",
     "migrate:undo": "sequelize-cli db:migrate:undo:all",
@@ -26,6 +27,7 @@
     "@types/dotenv": "^8.2.0",
     "@types/jest": "^26.0.20",
     "@types/node-cron": "^2.0.3",
+    "@types/redis": "^2.8.28",
     "@types/semver": "^7.3.4",
     "@types/sequelize": "^4.28.9",
     "@typescript-eslint/eslint-plugin": "^4.17.0",
@@ -68,6 +70,7 @@
     "node-cron": "^3.0.0",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
+    "redis": "^3.0.2",
     "semver": "^7.3.4",
     "sequelize": "^6.5.0"
   }

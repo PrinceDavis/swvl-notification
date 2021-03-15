@@ -5,6 +5,7 @@ import { ScheduleNotification } from "../usescases";
 import { Heimdall, Messenger } from "../services";
 import { database } from "../adapters/database";
 import { config } from "../adapters/config";
+import { Worker } from "./workers/listener";
 import {
   NotificationRepository,
   UserRepository,
@@ -20,6 +21,7 @@ diContainer.register({
   notificationModel: asValue(NotificationModel),
   messenger: asClass(Messenger).singleton(),
   heimdall: asClass(Heimdall).singleton(),
+  worker: asClass(Worker).singleton(),
   server: asClass(Server).singleton(),
   userModel: asValue(UserModel),
   database: asValue(database),

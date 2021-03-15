@@ -10,6 +10,7 @@ describe("config", () => {
     expect(config.db.test_db_user).toEqual(process.env.TEST_DB_USER);
     expect(config.db.password).toEqual(process.env.DB_PASSWORD);
     expect(config.db.password).toEqual(process.env.DB_PASSWORD);
+    expect(config.db.redis_url).toEqual(process.env.REDIS_URL);
     expect(config.db.dialect).toEqual(process.env.DB_DIALECT);
     expect(config.db.database).toEqual(process.env.DB_NAME);
     expect(config.db.username).toEqual(process.env.DB_USER);

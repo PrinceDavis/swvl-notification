@@ -10,6 +10,7 @@ export interface DBI {
   test_db_password: string;
   test_db_name: string;
   test_db_user: string;
+  redis_url: string;
   username: string;
   password: string;
   database: string;
