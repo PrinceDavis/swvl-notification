@@ -20,16 +20,27 @@ There are two ways to schedule notification:
 - The following with suitable values needs to be put inside the created `.env` file:
 
 `REDIS_URL==redis://redis:6379`
+
 `TEST_DB_PASSWORD=`
+
 `TEST_DB_USER=`
+
 `TEST_DB_NAME=`
+
 `PROCESS_TYPE=`
+
 `DB_PASSWORD=`
+
 `DB_DIALECT=`
+
 `PORT=5000`
+
 `NODE_ENV=`
+
 `DB_NAME=`
+
 `DB_HOST=`
+
 `DB_USER=`
 
 ---
