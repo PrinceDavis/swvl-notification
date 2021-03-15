@@ -43,6 +43,8 @@ link to api [doc](https://documenter.getpostman.com/view/263074/Tz5qbdYC)
 
 `DB_USER=`
 
+run `docker-compose build & docker-compose up`
+
 ---
 
 ### Future Improvements
