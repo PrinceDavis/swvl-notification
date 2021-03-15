@@ -1,7 +1,5 @@
 ### What I built
 
-Below are architectural the app.
-
 ![architecture image](./architecture.png)
 
 This is a variation of clean code/hexagonal architecture.
