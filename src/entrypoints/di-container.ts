@@ -1,15 +1,15 @@
 import { createContainer, asValue, asClass } from "awilix";
 
-import { NotificationModel, UserModel } from "../../adapters/models";
-import { ScheduleNotification } from "../../usescases";
-import { Heimdall, Messenger } from "../../services";
-import { database } from "../../adapters/database";
-import { config } from "../../adapters/config";
+import { NotificationModel, UserModel } from "../adapters/models";
+import { ScheduleNotification } from "../usescases";
+import { Heimdall, Messenger } from "../services";
+import { database } from "../adapters/database";
+import { config } from "../adapters/config";
 import {
   NotificationRepository,
   UserRepository,
-} from "../../adapters/repositories";
-import { Server } from "./server";
+} from "../adapters/repositories";
+import { Server } from "./http/server";
 
 export const diContainer = createContainer();
 

@@ -1,4 +1,4 @@
-import { diContainer } from "./di-container";
+import { diContainer } from "../di-container";
 import { Server } from "./server";
 
 const server = <Server>diContainer.resolve("server");

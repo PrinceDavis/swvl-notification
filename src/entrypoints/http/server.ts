@@ -4,7 +4,7 @@ import helment from "fastify-helmet";
 import cors from "fastify-cors";
 
 import { ConfigI } from "../../contracts/config";
-import { diContainer } from "./di-container";
+import { diContainer } from "../di-container";
 import { registerRoutes } from "./routes";
 import { Heimdall } from "../../services";
 
