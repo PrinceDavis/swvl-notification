@@ -4,6 +4,7 @@ import {
   NotificationRepositoryI,
   UserRepositoryI,
 } from "../adapters/repositories";
+import { Logger } from "../adapters/logger";
 
 export class Messenger {
   private notificationRepository: NotificationRepositoryI;
@@ -18,7 +19,7 @@ export class Messenger {
     recievers: UserModel[],
     notification: NotificationModel
   ): Promise<void> {
-    console.log("sending messages to recievers");
+    Logger.info("sending messages to recievers");
     for (const reciever of recievers) {
       if (reciever.messagePreference === "push") {
         this.sendPushNote(reciever, notification);
@@ -34,13 +35,13 @@ export class Messenger {
   }
 
   sendPushNote(reciever: UserModel, notification: NotificationModel): void {
-    console.log(
+    Logger.info(
       `${notification.message} delivered to user with device ID ${reciever.deviceId} 
        via push notification`
     );
   }
   sendSMS(reciever: UserModel, notification: NotificationModel): void {
-    console.log(
+    Logger.info(
       `${notification.message} delivered to user with device ID ${reciever.deviceId} via SMS`
     );
   }

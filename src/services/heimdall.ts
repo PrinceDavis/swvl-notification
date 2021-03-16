@@ -7,6 +7,7 @@ import {
   UserRepositoryI,
 } from "../adapters/repositories";
 import { NotificationModel, UserModel } from "../adapters/models";
+import { Logger } from "../adapters/logger";
 
 interface ConstructorArgI extends ArgI {
   messenger: Messenger;
@@ -78,23 +79,23 @@ export class Heimdall {
       try {
         const notification = await this.fetchNotification();
         if (!notification) {
-          console.log("Heimdall has nothing to do this cycle");
+          Logger.info("Heimdall has nothing to do this cycle");
           return;
         }
         const recievers = await this.getRecievers(notification);
         await this.updateNotification(recievers, notification);
         if (!recievers.length) {
-          console.log("Heimdall has nothing to do this cycle");
+          Logger.info("Heimdall has nothing to do this cycle");
           return;
         }
         // send messages to recievers
         await this.messenger.handleMessage(recievers, notification);
       } catch (ex) {
-        console.log("Heimdall crashed");
-        console.log(ex);
+        Logger.info("Heimdall crashed");
+        Logger.info(ex);
         process.exit(1);
       }
     });
-    console.log("watching");
+    Logger.info("watching");
   }
 }

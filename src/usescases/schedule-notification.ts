@@ -5,6 +5,7 @@ import {
   NotificationRepositoryI,
   UserRepositoryI,
 } from "../adapters/repositories";
+import { Logger } from "../adapters/logger";
 
 interface ExecuteArgI {
   notificationObj: NotificationObjI;
@@ -44,7 +45,7 @@ export class ScheduleNotification extends UseCase {
           message: "RecipientType is required when userObj is not provided",
         });
       } else {
-        console.log(ex);
+        Logger.error(ex);
         this.emit(ERROR, ex);
       }
     }

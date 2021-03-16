@@ -1,3 +1,4 @@
+import { Logger } from "../../adapters/logger";
 import { diContainer } from "../di-container";
 import { Server } from "./server";
 
@@ -7,9 +8,8 @@ async function start(): Promise<void> {
   try {
     await server.start();
   } catch (ex) {
-    console.log("Could not start server");
-    // log exception
-    console.log(ex);
+    Logger.info("Could not start server");
+    Logger.error(ex);
     process.exit(1);
   }
 }

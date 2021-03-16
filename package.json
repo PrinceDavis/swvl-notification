@@ -26,6 +26,7 @@
   "devDependencies": {
     "@types/dotenv": "^8.2.0",
     "@types/jest": "^26.0.20",
+    "@types/log4js": "^2.3.5",
     "@types/node-cron": "^2.0.3",
     "@types/redis": "^2.8.28",
     "@types/semver": "^7.3.4",
@@ -51,7 +52,7 @@
     "typescript": "^4.2.3"
   },
   "engines": {
-    "node": "14.16.0"
+    "node": "14.8.0"
   },
   "husky": {
     "hooks": {
@@ -67,6 +68,7 @@
     "fastify-helmet": "^5.3.0",
     "http-status": "^1.5.0",
     "joi": "^17.4.0",
+    "log4js": "^6.3.0",
     "node-cron": "^3.0.0",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",

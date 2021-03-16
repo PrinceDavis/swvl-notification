@@ -8,6 +8,7 @@ import { diContainer } from "../di-container";
 import { Worker } from "../workers/listener";
 import { registerRoutes } from "./routes";
 import { Heimdall } from "../../services";
+import { Logger } from "../../adapters/logger";
 
 interface ServerI {
   database: Sequelize;
@@ -44,7 +45,7 @@ export class Server {
       "0.0.0.0"
     );
     this.heimdall.watch();
-    console.log(`server listening on ${address}`);
+    Logger.info(`server listening on ${address}`);
     this.worker.listen();
   }
 
