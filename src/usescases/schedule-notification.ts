@@ -1,11 +1,11 @@
 import { ArgI, NotificationObjI } from "../contracts/notification";
 import { UserObjectI } from "../contracts/user";
+import { Logger } from "../adapters/logger";
 import { UseCase } from "./usecase";
 import {
   NotificationRepositoryI,
   UserRepositoryI,
 } from "../adapters/repositories";
-import { Logger } from "../adapters/logger";
 
 interface ExecuteArgI {
   notificationObj: NotificationObjI;
@@ -37,6 +37,7 @@ export class ScheduleNotification extends UseCase {
       );
       this.emit(SUCCESS, notification.toJSON());
     } catch (ex) {
+      Logger.error(ex);
       if (ex.type === "DatabaseError") {
         this.emit(DATABASE_ERROR, ex);
       } else if (ex.message === "BadParameter") {
